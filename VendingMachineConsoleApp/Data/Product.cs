@@ -8,12 +8,10 @@ namespace VendingMachineConsoleApp.Data
     {
         protected string name;
         protected string howToUse;
-        protected string type;
         protected int price;
 
         public abstract string Name { get; }
         public abstract string HowToUse { get; }
-        public abstract string Type { get; }
         public abstract int Price { get; }
 
 

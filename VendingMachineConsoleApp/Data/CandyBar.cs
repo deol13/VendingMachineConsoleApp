@@ -4,20 +4,26 @@ using System.Text;
 
 namespace VendingMachineConsoleApp.Data
 {
-    public class Candy : Product
+    public class CandyBar : Product
     {
+        private string flavor;
+
+        public string Flavor { get { return flavor; } }
+
         public override string Name { get { return Name; } }
 
         public override string HowToUse { get { return HowToUse;  } }
 
-        public override string Type { get { return Type; } }
-
         public override int Price { get { return Price; } }
 
-        public Candy()
+        public CandyBar(string name, string flavor, int price)
         {
-
+            this.name = name;
+            this.price = price;
+            this.flavor = flavor;
+            howToUse = "Unwrap it's wrapper and eat it.";
         }
+
 
         public override string Examine()
         {
