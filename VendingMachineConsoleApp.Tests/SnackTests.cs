@@ -294,5 +294,32 @@ namespace VendingMachineConsoleApp.Tests
             //Assert
             Assert.Equal(expectedString, result);
         }
+
+
+
+        /////////////////////////////////////////////Get method tested
+        [Fact]
+        public void AllGetMethods_Test()
+        {
+            //Assign
+            string expectedName = "Marsbar";
+            string expectedType = "Candy bar";
+            int expectedPrice = 15;
+            int expectedWeight = 60;
+
+            Snack snack = new Snack(expectedName, expectedType, expectedWeight, expectedPrice);
+
+            //Act
+            string actualName = snack.Name;
+            string actualType = snack.Type;
+            int actualWeight = snack.Weight;
+            int actualPrice = snack.Price;
+
+            //Assert
+            Assert.Equal(expectedName, actualName);
+            Assert.Equal(expectedType, actualType);
+            Assert.Equal(expectedWeight, actualWeight);
+            Assert.Equal(expectedPrice, actualPrice);
+        }
     }
 }
