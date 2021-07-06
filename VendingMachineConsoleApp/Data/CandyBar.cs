@@ -12,27 +12,24 @@ namespace VendingMachineConsoleApp.Data
 
         public override string Name { get { return Name; } }
 
-        public override string HowToUse { get { return HowToUse;  } }
-
         public override int Price { get { return Price; } }
 
         public CandyBar(string name, string flavor, int price)
         {
             this.name = name;
             this.price = price;
-            this.flavor = flavor;
-            howToUse = "Unwrap it's wrapper and eat it.";
+            this.flavor = flavor;  
         }
 
 
         public override string Examine()
         {
-            throw new NotImplementedException();
+            return $"{name} candybar with {flavor} flavor, priced at {price}.";
         }
 
         public override string Use()
         {
-            throw new NotImplementedException();
+            return "Unwrap it's wrapper and eat it.";
         }
     }
 }

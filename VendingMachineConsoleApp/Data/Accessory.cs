@@ -11,8 +11,6 @@ namespace VendingMachineConsoleApp.Data
         public string Material { get { return Material; } }
         public override string Name { get { return Name; } }
 
-        public override string HowToUse { get { return HowToUse; } }
-
         public override int Price { get { return Price; } }
 
         public Accessory( string name, string material, int price)
@@ -20,17 +18,16 @@ namespace VendingMachineConsoleApp.Data
             this.name = name;
             this.material = material;
             this.price = price;
-            howToUse = "You wear it.";
         }
 
         public override string Examine()
         {
-            throw new NotImplementedException();
+            return $"{name} accessory made with {material}, priced at {price}.";
         }
 
         public override string Use()
         {
-            throw new NotImplementedException();
+            return "You wear it.";
         }
     }
 }
