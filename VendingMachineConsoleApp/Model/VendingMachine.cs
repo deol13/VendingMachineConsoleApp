@@ -11,6 +11,8 @@ namespace VendingMachineConsoleApp.Model
         readonly Dictionary<int, int> coins;
         int money;
 
+        public int Money { get { return money; } }
+
         public VendingMachine()
         {
             coins = new Dictionary<int, int>();
@@ -26,7 +28,13 @@ namespace VendingMachineConsoleApp.Model
 
             money = 0;
 
-            products = new Product[0];
+            products = new Product[3];
+            Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150);
+            Accessory accessory = new Accessory("Ring", "Silver", 400);
+            Snack snack = new Snack("Marsbar", "Chocolate", "Candy bar", 15);
+            products[0] = toy;
+            products[1] = accessory;
+            products[2] = snack;
         }
 
         public Product Purchase(int index)
@@ -35,8 +43,11 @@ namespace VendingMachineConsoleApp.Model
 
             if (index > 0 && index < products.Length)
             {
-                //if(products[index].Cost <= money)
+                if (products[index].Price <= money)
+                {
                     product = products[index];
+                    money -= products[index].Price;
+                }
             }
 
             return product;

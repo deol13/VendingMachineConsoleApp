@@ -7,8 +7,13 @@ namespace VendingMachineConsoleApp.Data
     public abstract class Product
     {
         protected string name;
-        protected string howToUse;
         protected int price;
+
+        public Product(string name, int price)
+        {
+            this.name = name;
+            this.price = price;
+        }
 
         public abstract string Name { get; }
         public abstract int Price { get; }

@@ -4,32 +4,34 @@ using System.Text;
 
 namespace VendingMachineConsoleApp.Data
 {
-    public class CandyBar : Product
+    public class Snack : Product
     {
         private string flavor;
+        private string type;
 
         public string Flavor { get { return flavor; } }
+
+        public string Type { get { return type; } }
 
         public override string Name { get { return Name; } }
 
         public override int Price { get { return Price; } }
 
-        public CandyBar(string name, string flavor, int price)
+        public Snack(string name, string flavor, string type, int price) : base(name, price)
         {
-            this.name = name;
-            this.price = price;
-            this.flavor = flavor;  
+            this.flavor = flavor;
+            this.type = type;
         }
 
 
         public override string Examine()
         {
-            return $"{name} candybar with {flavor} flavor, priced at {price}.";
+            return $"{name} snack with {flavor} flavor, priced at {price}.";
         }
 
         public override string Use()
         {
-            return "Unwrap it's wrapper and eat it.";
+            return "Unwrap/Open and start eating.";
         }
     }
 }

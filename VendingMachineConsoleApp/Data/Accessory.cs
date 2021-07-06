@@ -13,11 +13,9 @@ namespace VendingMachineConsoleApp.Data
 
         public override int Price { get { return Price; } }
 
-        public Accessory( string name, string material, int price)
+        public Accessory( string name, string material, int price) : base(name, price)
         {
-            this.name = name;
             this.material = material;
-            this.price = price;
         }
 
         public override string Examine()
