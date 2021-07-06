@@ -37,17 +37,31 @@ namespace VendingMachineConsoleApp.Model
             products[2] = snack;
         }
 
-        public Product Purchase(int index)
+        /// <summary>
+        /// 1 is Toy. 2 is Drink and 3 is Snack.
+        /// </summary>
+        /// <param name="vendingNumber">What you want to buy</param>
+        /// <returns></returns>
+        public Product Purchase(int vendingNumber)
         {
             Product product = null;
+            int index = vendingNumber - 1;
 
-            if (index > 0 && index < products.Length)
+            if (index >= 0 && index < products.Length)
             {
                 if (products[index].Price <= money)
                 {
                     product = products[index];
                     money -= products[index].Price;
                 }
+                else
+                {
+                    throw new ArithmeticException("Not enough money.");
+                }
+            }
+            else
+            {
+                throw new ArithmeticException("Not a valid vending number.");
             }
 
             return product;
@@ -55,12 +69,14 @@ namespace VendingMachineConsoleApp.Model
 
         public string ShowAll()
         {
-            string show = "";
+            string show = "Products:\n";
             int vendingNumber = 1;
 
             foreach (Product product in products)
             {
-                show += $"{vendingNumber++}: {product}\n"; //ToString?
+                //GetType gets me the entire namespace and we only want the class name
+                //so .Name on GetType() will get us only the class name.
+                show += $"{vendingNumber++}: {product.GetType().Name}\n"; //ToString?
             }
 
             return show;
