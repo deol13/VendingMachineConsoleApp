@@ -8,21 +8,37 @@ namespace VendingMachineConsoleApp.Data
     {
         private string type;
 
-        public string Type { get { return Name; } }
-        public override string Name { get { return Name; } }
-        public override int Price { get { return Price; } }
+        public string Type { get { return type; } }
+        public override string Name { get { return name; } }
+        public override int Price { get { return price; } }
 
         public Toy(string name, string type, int price)
         {
-            SetStringFields(name, this.name);
-            SetStringFields(type, this.type);
+            SetStringFields(name, 1);   //Case 1 is name
+            SetStringFields(type, 2);   //Case 2 is type
             SetIntFields(price, this.price);
         }
-        protected override void SetStringFields(string newData, string field)
+
+        /// <summary>
+        /// Case 1 is name. Case 2 is type.
+        /// </summary>
+        /// <param name="newData">New value</param>
+        /// <param name="whichField">Which case in the switch is suppose to be accessed</param>
+        public override void SetStringFields(string newData, int whichField)
         {
-            if (string.IsNullOrWhiteSpace(newData))
+            if (!string.IsNullOrWhiteSpace(newData))
             {
-                field = newData;
+                switch(whichField)
+                {
+                    case 1:
+                        name = newData;
+                        break;
+                    case 2:
+                        type = newData;
+                        break;
+                    default:
+                        break;  
+                }
             }
             else
             {
@@ -30,11 +46,16 @@ namespace VendingMachineConsoleApp.Data
             }
 
         }
-        protected override void SetIntFields(int newData, int field)
+        /// <summary>
+        /// Case is irrelevent
+        /// </summary>
+        /// <param name="newData">New value</param>
+        /// <param name="whichField">There is no case in this</param>
+        public override void SetIntFields(int newData, int whichField)
         {
-            if (newData >= 0)
+            if (newData > 0)
             {
-                field = newData;
+                price = newData;
             }
             else
             {

@@ -9,8 +9,8 @@ namespace VendingMachineConsoleApp.Data
         protected string name;
         protected int price;
 
-        protected abstract void SetStringFields(string newData, string field);
-        protected abstract void SetIntFields(int newData, int field);
+        public abstract void SetStringFields(string newData, int whichField);
+        public abstract void SetIntFields(int newData, int whichField);
 
         public abstract string Name { get; }
         public abstract int Price { get; }

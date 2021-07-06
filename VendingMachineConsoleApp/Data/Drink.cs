@@ -13,24 +13,42 @@ namespace VendingMachineConsoleApp.Data
         public string Flavor { get { return flavor; } }
         public string Company { get { return company; } }
         public int ContainsInCL { get { return containsInCL; } }
-        public override string Name { get { return Name; } }
 
-        public override int Price { get { return Price; } }
+        public override string Name { get { return name; } }
+        public override int Price { get { return price; } }
 
         public Drink( string name, string flavor, string company, int containsInCL, int price)
         {
-            SetStringFields(name, this.name);
-            SetStringFields(flavor, this.flavor);
-            SetStringFields(company, this.company);
-            SetIntFields(containsInCL, this.containsInCL);
-            SetIntFields(price, this.price);
+            SetStringFields(name, 1);   //Case 1 is name
+            SetStringFields(flavor, 2); //Case 2 is flavor
+            SetStringFields(company, 3);//Case 3 is company
+            SetIntFields(price, 1);         //Case 1 is price
+            SetIntFields(containsInCL, 2);  //Case 2 is containsInCL
         }
 
-        protected override void SetStringFields(string newData, string field)
+        /// <summary>
+        /// Case 1 is name. Case 2 is flavor. Case 3 is company
+        /// </summary>
+        /// <param name="newData">New value</param>
+        /// <param name="whichField">Which case in the switch is suppose to be accessed</param>
+        public override void SetStringFields(string newData, int whichField)
         {
-            if (string.IsNullOrWhiteSpace(newData))
+            if (!string.IsNullOrWhiteSpace(newData))
             {
-                field = newData;
+                switch (whichField)
+                {
+                    case 1:
+                        name = newData;
+                        break;
+                    case 2:
+                        flavor = newData;
+                        break;
+                    case 3:
+                        company = newData;
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -38,11 +56,26 @@ namespace VendingMachineConsoleApp.Data
             }
 
         }
-        protected override void SetIntFields(int newData, int field)
+        /// <summary>
+        /// Case 1 is price. Case 2 is containsInCL.
+        /// </summary>
+        /// <param name="newData">New value</param>
+        /// <param name="whichField">Which case in the switch is suppose to be accessed</param>
+        public override void SetIntFields(int newData, int whichField)
         {
-            if (newData >= 0)
+            if (newData > 0)
             {
-                field = newData;
+                switch (whichField)
+                {
+                    case 1:
+                        price = newData;
+                        break;
+                    case 2:
+                        containsInCL = newData;
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {

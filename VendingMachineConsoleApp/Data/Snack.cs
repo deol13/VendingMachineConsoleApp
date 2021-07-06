@@ -12,23 +12,36 @@ namespace VendingMachineConsoleApp.Data
         public string Type { get { return type; } }
         public int Weight { get { return weight; } }
 
-        public override string Name { get { return Name; } }
-
-        public override int Price { get { return Price; } }
-
+        public override string Name { get { return name; } }
+        public override int Price { get { return price; } }
         public Snack(string name, string type, int weight, int price)
         {
-            SetStringFields(name, this.name);
-            SetStringFields(type, this.type);
-            SetIntFields(weight, this.weight);
-            SetIntFields(price, this.price);
+            SetStringFields(name, 1);   //Case 1 is name
+            SetStringFields(type, 2);   //Case 2 is type
+            SetIntFields(price, 1);    //Case 1 is price
+            SetIntFields(weight, 2);  //Case 2 is weight
         }
 
-        protected override void SetStringFields(string newData, string field)
+        /// <summary>
+        /// Case 1 is name. Case 2 is type.
+        /// </summary>
+        /// <param name="newData">New value</param>
+        /// <param name="whichField">Which case in the switch is suppose to be accessed</param>
+        public override void SetStringFields(string newData, int whichField)
         {
-            if(string.IsNullOrWhiteSpace(newData))
+            if(!string.IsNullOrWhiteSpace(newData))
             {
-                field = newData;
+                switch (whichField)
+                {
+                    case 1:
+                        name = newData;
+                        break;
+                    case 2:
+                        type = newData;
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -36,11 +49,26 @@ namespace VendingMachineConsoleApp.Data
             }
 
         }
-        protected override void SetIntFields(int newData, int field)
+        /// <summary>
+        /// Case 1 is price. Case 2 is wWeight.
+        /// </summary>
+        /// <param name="newData">New value</param>
+        /// <param name="whichField">Which case in the switch is suppose to be accessed</param>
+        public override void SetIntFields(int newData, int whichField)
         {
-            if(newData >= 0)
+            if(newData > 0)
             {
-                field = newData;
+                switch (whichField)
+                {
+                    case 1:
+                        price = newData;
+                        break;
+                    case 2:
+                        weight = newData;
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
