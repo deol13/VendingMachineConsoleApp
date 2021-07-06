@@ -9,17 +9,13 @@ namespace VendingMachineConsoleApp.Data
         protected string name;
         protected int price;
 
-        public Product(string name, int price)
-        {
-            this.name = name;
-            this.price = price;
-        }
+        protected abstract void SetStringFields(string newData, string field);
+        protected abstract void SetIntFields(int newData, int field);
 
         public abstract string Name { get; }
         public abstract int Price { get; }
 
 
-        //ToString();
         public abstract string Examine();
 
         public abstract string Use();

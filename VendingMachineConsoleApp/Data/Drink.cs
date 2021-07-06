@@ -4,29 +4,31 @@ using System.Text;
 
 namespace VendingMachineConsoleApp.Data
 {
-    public class Snack : Product
+    public class Drink : Product
     {
-        private string type;
-        private int weight;
+        private string flavor;
+        private string company;
+        private int containsInCL;
 
-        public string Type { get { return type; } }
-        public int Weight { get { return weight; } }
-
+        public string Flavor { get { return flavor; } }
+        public string Company { get { return company; } }
+        public int ContainsInCL { get { return containsInCL; } }
         public override string Name { get { return Name; } }
 
         public override int Price { get { return Price; } }
 
-        public Snack(string name, string type, int weight, int price)
+        public Drink( string name, string flavor, string company, int containsInCL, int price)
         {
             SetStringFields(name, this.name);
-            SetStringFields(type, this.type);
-            SetIntFields(weight, this.weight);
+            SetStringFields(flavor, this.flavor);
+            SetStringFields(company, this.company);
+            SetIntFields(containsInCL, this.containsInCL);
             SetIntFields(price, this.price);
         }
 
         protected override void SetStringFields(string newData, string field)
         {
-            if(string.IsNullOrWhiteSpace(newData))
+            if (string.IsNullOrWhiteSpace(newData))
             {
                 field = newData;
             }
@@ -38,7 +40,7 @@ namespace VendingMachineConsoleApp.Data
         }
         protected override void SetIntFields(int newData, int field)
         {
-            if(newData >= 0)
+            if (newData >= 0)
             {
                 field = newData;
             }
@@ -51,12 +53,12 @@ namespace VendingMachineConsoleApp.Data
 
         public override string Examine()
         {
-            return $"{type} named {name}, weights {weight} and is priced at {price}.";
+            return $"{flavor} flavored {name} made by {Company}, contains {containsInCL}cl and is priced at {price}.";
         }
 
         public override string Use()
         {
-            return "Unwrap/Open and start eating.";
+            return "Open it up and drink.";
         }
     }
 }

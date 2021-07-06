@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineConsoleApp", "VendingMachineConsoleApp\VendingMachineConsoleApp.csproj", "{1ECB7775-BCE5-496A-8491-AB2D5ECCD24B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineConsoleApp", "VendingMachineConsoleApp\VendingMachineConsoleApp.csproj", "{1ECB7775-BCE5-496A-8491-AB2D5ECCD24B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineConsoleApp.Tests", "VendingMachineConsoleApp.Tests\VendingMachineConsoleApp.Tests.csproj", "{F248F6C3-68DF-488E-B2C6-E2E832BDF70C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1ECB7775-BCE5-496A-8491-AB2D5ECCD24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ECB7775-BCE5-496A-8491-AB2D5ECCD24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ECB7775-BCE5-496A-8491-AB2D5ECCD24B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F248F6C3-68DF-488E-B2C6-E2E832BDF70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F248F6C3-68DF-488E-B2C6-E2E832BDF70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F248F6C3-68DF-488E-B2C6-E2E832BDF70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F248F6C3-68DF-488E-B2C6-E2E832BDF70C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

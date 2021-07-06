@@ -30,10 +30,10 @@ namespace VendingMachineConsoleApp.Model
 
             products = new Product[3];
             Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150);
-            Accessory accessory = new Accessory("Ring", "Silver", 400);
-            Snack snack = new Snack("Marsbar", "Chocolate", "Candy bar", 15);
+            Drink drink = new Drink("Fanta", "Exotic", "Coca-Cola", 33, 20);
+            Snack snack = new Snack("Marsbar", "Candy bar", 60, 15);
             products[0] = toy;
-            products[1] = accessory;
+            products[1] = drink;
             products[2] = snack;
         }
 

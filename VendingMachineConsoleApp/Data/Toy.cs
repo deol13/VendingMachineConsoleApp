@@ -12,10 +12,36 @@ namespace VendingMachineConsoleApp.Data
         public override string Name { get { return Name; } }
         public override int Price { get { return Price; } }
 
-        public Toy(string name, string type, int price) : base(name, price)
+        public Toy(string name, string type, int price)
         {
-            this.type = type;
+            SetStringFields(name, this.name);
+            SetStringFields(type, this.type);
+            SetIntFields(price, this.price);
         }
+        protected override void SetStringFields(string newData, string field)
+        {
+            if (string.IsNullOrWhiteSpace(newData))
+            {
+                field = newData;
+            }
+            else
+            {
+                throw new ArgumentException("Empty or only whitespace is not allowed.");
+            }
+
+        }
+        protected override void SetIntFields(int newData, int field)
+        {
+            if (newData >= 0)
+            {
+                field = newData;
+            }
+            else
+            {
+                throw new ArgumentException("0 or less price is not allowed.");
+            }
+        }
+
 
         public override string Examine()
         {
