@@ -268,5 +268,48 @@ namespace VendingMachineConsoleApp.Tests
             Assert.Equal(expectedExceptionMessage, result.Message);
 
         }
+
+
+        ////////////////////////////////////////////Examine and Use tests
+        [Fact]
+        public void Examine_Test()
+        {
+            //Assign
+            string name = "Fanta";
+            string flavor = "Exotic";
+            string company = "Coca-Cola";
+            int containsInCL = 33;
+            int price = 20;
+
+            Drink drink = new Drink(name, flavor, company, containsInCL, price);
+
+            string expectedString = $"{flavor} flavored {name} made by {company}, contains {containsInCL}cl and is priced at {price}.";
+
+            //Act
+            string result = drink.Examine();
+
+            //Assert
+            Assert.Equal(expectedString, result);
+        }
+        [Fact]
+        public void Use_Test()
+        {
+            //Assign
+            string name = "Fanta";
+            string flavor = "Exotic";
+            string company = "Coca-Cola";
+            int containsInCL = 33;
+            int price = 20;
+
+            Drink drink = new Drink(name, flavor, company, containsInCL, price);
+
+            string expectedString = "Open it up and drink.";
+
+            //Act
+            string result = drink.Use();
+
+            //Assert
+            Assert.Equal(expectedString, result);
+        }
     }
 }

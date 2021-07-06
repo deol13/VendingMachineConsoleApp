@@ -86,7 +86,7 @@ namespace VendingMachineConsoleApp.Data
 
         public override string Examine()
         {
-            return $"{flavor} flavored {name} made by {Company}, contains {containsInCL}cl and is priced at {price}.";
+            return $"{flavor} flavored {name} made by {company}, contains {containsInCL}cl and is priced at {price}.";
         }
 
         public override string Use()
