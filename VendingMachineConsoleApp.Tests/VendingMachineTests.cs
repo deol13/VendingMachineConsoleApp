@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using VendingMachineConsoleApp.Model;
 using VendingMachineConsoleApp.Data;
+using System.Collections.Generic;
 
 namespace VendingMachineConsoleApp.Tests
 {
@@ -177,16 +178,16 @@ namespace VendingMachineConsoleApp.Tests
             vMachine.InsertMoney(100);
             vMachine.InsertMoney(100);
             vMachine.InsertMoney(1);
-            string expectedString = $"Change 701 back:" 
-                                  + "1st 500kr\n"
-                                  + "2st 100kr\n"
-                                  + "1st 1kr\n";
+            Dictionary<int, int> expectedChangeBack = new Dictionary<int, int>();
+            expectedChangeBack.Add(500,1);
+            expectedChangeBack.Add(100,2);
+            expectedChangeBack.Add(1,1);
 
             //Act
-            string result = vMachine.EndTransaction();
+            Dictionary<int, int> result = vMachine.EndTransaction();
 
             //Assert
-            Assert.Equal(expectedString, result);
+            Assert.Equal(expectedChangeBack, result);
         }
     }
 }

@@ -8,23 +8,22 @@ namespace VendingMachineConsoleApp.Model
     public class VendingMachine : IVending
     {
         Product[] products;
-        readonly Dictionary<int, int> coins;
+        readonly int[] coins;
         int money;
 
         public int Money { get { return money; } }
 
         public VendingMachine()
         {
-            coins = new Dictionary<int, int>();
- 
-            coins.Add(1000, 1000);
-            coins.Add(500, 500);
-            coins.Add(100, 100);
-            coins.Add(50, 50);
-            coins.Add(20, 20);
-            coins.Add(10, 10);
-            coins.Add(5, 5);
-            coins.Add(1, 1);
+            coins = new int[8];
+            coins[0] = 1000;
+            coins[1] = 500;
+            coins[2] = 100;
+            coins[3] = 50;
+            coins[4] = 20;
+            coins[5] = 10;
+            coins[6] = 5;
+            coins[7] = 1;
 
             money = 0;
 
@@ -84,10 +83,9 @@ namespace VendingMachineConsoleApp.Model
 
         public bool InsertMoney(int insertedMoney)
         {
-            Dictionary<int, int>.ValueCollection valueCoin = coins.Values;
             bool validMoney = false;
 
-            foreach (int coin in valueCoin)
+            foreach (int coin in coins)
             {
                 if(coin.Equals(insertedMoney))
                 {
@@ -100,17 +98,15 @@ namespace VendingMachineConsoleApp.Model
             return validMoney;
         }
 
-        public string EndTransaction()
+        public Dictionary<int,int> EndTransaction()
         {
-            string change = $"Change {money} back:";
+            Dictionary<int, int> change = new Dictionary<int, int>();
 
-            Dictionary<int, int>.ValueCollection valueCoin = coins.Values;
-
-            foreach (int coin in valueCoin)
+            foreach(int coin in coins)
             {
                 if ((money / coin) > 0)
                 {
-                    change += $"{money / coin}st {coin}kr\n";
+                    change.Add(coin, money / coin);
                     money %= coin;
                 }
             }

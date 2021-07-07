@@ -13,6 +13,6 @@ namespace VendingMachineConsoleApp.Model
 
         bool InsertMoney(int money);
 
-        string EndTransaction();
+        Dictionary<int,int> EndTransaction();
     }
 }
