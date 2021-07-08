@@ -10,6 +10,7 @@ namespace VendingMachineConsoleApp.Model
         Product[] products;
         readonly int[] coins;
         int money;
+        //Volume of each product inside the vending machine? aka 10 in the beginning than 1 less for each purchase
 
         public int Money { get { return money; } }
 
@@ -28,9 +29,9 @@ namespace VendingMachineConsoleApp.Model
             money = 0;
 
             products = new Product[3];
-            Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150);
-            Drink drink = new Drink("Fanta", "Exotic", "Coca-Cola", 33, 20);
-            Snack snack = new Snack("Marsbar", "Candy bar", 60, 15);
+            Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150, "Cutton", "Yellow", 20);
+            Drink drink = new Drink("Fanta", "Soda", 20, "Exotic", "Coca-Cola", 33);
+            Snack snack = new Snack("Marsbar", "Candy bar", 15, 60, 300, true);
             products[0] = toy;
             products[1] = drink;
             products[2] = snack;
@@ -66,16 +67,19 @@ namespace VendingMachineConsoleApp.Model
             return product;
         }
 
-        public string ShowAll()
+        public string[] ShowAll()
         {
-            string show = "Products:\n";
+            string[] show = new string[4];
+            show[0] = "------- Products -------\n\n";
             int vendingNumber = 1;
 
             foreach (Product product in products)
             {
                 //GetType gets me the entire namespace and we only want the class name
                 //so .Name on GetType() will get us only the class name.
-                show += $"{vendingNumber++}: {product.GetType().Name}\n"; //ToString?
+                show[vendingNumber] += $"--- {vendingNumber} ---\n {product.Examine()}\n"; 
+                
+                vendingNumber++;
             }
 
             return show;

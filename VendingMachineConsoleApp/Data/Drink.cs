@@ -8,27 +8,27 @@ namespace VendingMachineConsoleApp.Data
     {
         private readonly string flavor;
         private readonly string company;
-        private readonly int containsInCL;
+        private readonly int volumeInCL;
 
         public string Flavor { get { return flavor; } }
         public string Company { get { return company; } }
-        public int ContainsInCL { get { return containsInCL; } }
+        public int VolumeInCL { get { return volumeInCL; } }
 
-        public Drink( 
-            string name, 
+        public Drink( string name, string type, int price,
             string flavor, 
             string company, 
-            int containsInCL, 
-            int price) : base (name, price)
+            int volumeInCL ) : base (name, type, price)
         {
             this.flavor = CheckStringFields(flavor);
             this.company = CheckStringFields(company);
-            this.containsInCL = CheckIntFields(containsInCL);
+            this.volumeInCL = CheckIntFields(volumeInCL);
         } 
 
         public override string Examine()
         {
-            return base.ToString() + $"Flavor: {flavor}\nMade by: {company}\nVolume: {containsInCL}cl\n";
+            string str = "---- Drink ----\n";
+            str += base.ToString() + $"Flavor: {flavor}\nMade by: {company}\nVolume: {volumeInCL}cl\n";
+            return str;
         }
 
         public override string Use()

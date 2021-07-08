@@ -9,7 +9,7 @@ namespace VendingMachineConsoleApp.Model
     {
         Product Purchase(int index);
 
-        string ShowAll();
+        string[] ShowAll();
 
         bool InsertMoney(int money);
 

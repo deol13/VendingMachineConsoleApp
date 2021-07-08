@@ -14,18 +14,20 @@ namespace VendingMachineConsoleApp.Tests
             string name = "Fanta";
             string flavor = "Exotic";
             string company = "Coca-Cola";
+            string typeOfDrink = "Soda";
             int containsInCL = 33;
             int price = 20;
 
             //Act
-            Drink drink = new Drink(name, flavor, company, containsInCL, price);
+            Drink drink = new Drink(name, typeOfDrink, price, flavor, company, containsInCL);
 
             //Assert
             Assert.NotNull(drink);
             Assert.Equal(name, drink.Name);
+            Assert.Equal(typeOfDrink, drink.Type);
             Assert.Equal(flavor, drink.Flavor);
             Assert.Equal(company, drink.Company);
-            Assert.Equal(containsInCL, drink.ContainsInCL);
+            Assert.Equal(containsInCL, drink.VolumeInCL);
             Assert.Equal(price, drink.Price);
         }
         [Fact]
@@ -35,12 +37,13 @@ namespace VendingMachineConsoleApp.Tests
             string name = null;
             string flavor = "Exotic";
             string company = "Coca-Cola";
+            string typeOfDrink = "Soda";
             int containsInCL = 33;
             int price = 20;
             string expectedExceptionMessage = "Empty or only whitespace is not allowed.";
 
             //Act
-            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, flavor, company, containsInCL, price));
+            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, typeOfDrink, price, flavor, company, containsInCL));
 
             //Assert
             Assert.Equal(expectedExceptionMessage, result.Message);
@@ -50,6 +53,7 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string name = " ";
+            string typeOfDrink = "Soda";
             string flavor = "Exotic";
             string company = "Coca-Cola";
             int containsInCL = 33;
@@ -57,7 +61,7 @@ namespace VendingMachineConsoleApp.Tests
             string expectedExceptionMessage = "Empty or only whitespace is not allowed.";
 
             //Act
-            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, flavor, company, containsInCL, price));
+            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, typeOfDrink, price, flavor, company, containsInCL));
 
             //Assert
             Assert.Equal(expectedExceptionMessage, result.Message);
@@ -67,6 +71,7 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string name = "";
+            string typeOfDrink = "Soda";
             string flavor = "Exotic";
             string company = "Coca-Cola";
             int containsInCL = 33;
@@ -74,7 +79,7 @@ namespace VendingMachineConsoleApp.Tests
             string expectedExceptionMessage = "Empty or only whitespace is not allowed.";
 
             //Act
-            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, flavor, company, containsInCL, price));
+            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, typeOfDrink, price, flavor, company, containsInCL));
 
             //Assert
             Assert.Equal(expectedExceptionMessage, result.Message);
@@ -84,6 +89,7 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string name = "Fanta";
+            string typeOfDrink = "Soda";
             string flavor = "Exotic";
             string company = "Coca-Cola";
             int containsInCL = 0;
@@ -91,7 +97,7 @@ namespace VendingMachineConsoleApp.Tests
             string expectedExceptionMessage = "0 or less price is not allowed.";
 
             //Act
-            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, flavor, company, containsInCL, price));
+            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, typeOfDrink, price, flavor, company, containsInCL));
 
             //Assert
             Assert.Equal(expectedExceptionMessage, result.Message);
@@ -101,6 +107,7 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string name = "Fanta";
+            string typeOfDrink = "Soda";
             string flavor = "Exotic";
             string company = "Coca-Cola";
             int containsInCL = 33;
@@ -108,7 +115,7 @@ namespace VendingMachineConsoleApp.Tests
             string expectedExceptionMessage = "0 or less price is not allowed.";
 
             //Act
-            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, flavor, company, containsInCL, price));
+            ArgumentException result = Assert.Throws<ArgumentException>(() => new Drink(name, typeOfDrink, price, flavor, company, containsInCL));
 
             //Assert
             Assert.Equal(expectedExceptionMessage, result.Message);
@@ -121,14 +128,17 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string name = "Fanta";
+            string typeOfDrink = "Soda";
             string flavor = "Exotic";
             string company = "Coca-Cola";
             int containsInCL = 33;
             int price = 20;
 
-            Drink drink = new Drink(name, flavor, company, containsInCL, price);
+            Drink drink = new Drink(name, typeOfDrink, price, flavor, company, containsInCL);
 
-            string expectedString = $"Name: {name}\nPrice: {price}\nFlavor: {flavor}\nMade by: {company}\nVolume: {containsInCL}cl\n";
+            string expectedString = "---- Drink ----\n";
+            expectedString += $"Name: {name}\nType: {typeOfDrink}\nPrice: {price}kr\n";
+            expectedString += $"Flavor: {flavor}\nMade by: {company}\nVolume: {containsInCL}cl\n";
 
             //Act
             string result = drink.Examine();
@@ -141,12 +151,13 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string name = "Fanta";
+            string typeOfDrink = "Soda";
             string flavor = "Exotic";
             string company = "Coca-Cola";
             int containsInCL = 33;
             int price = 20;
 
-            Drink drink = new Drink(name, flavor, company, containsInCL, price);
+            Drink drink = new Drink(name, typeOfDrink, price, flavor, company, containsInCL);
 
             string expectedString = "Open it up and drink.";
 
@@ -165,23 +176,26 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string expectedName = "Fanta";
+            string expectedType = "Soda";
             string expectedFlavor = "Exotic";
             string expectedCompany = "Coca-Cola";
             int expectedContainsInCL = 33;
             int expectedPrice = 20;
 
             //Act
-            Drink drink = new Drink(expectedName, expectedFlavor, expectedCompany, expectedContainsInCL, expectedPrice);
+            Drink drink = new Drink(expectedName, expectedType, expectedPrice, expectedFlavor, expectedCompany, expectedContainsInCL);
 
             //Act
             string actualName = drink.Name;
+            string actualType = drink.Type;
             string actualFlavor = drink.Flavor;
             string actualCompany = drink.Company;
-            int actualContainsInCL = drink.ContainsInCL;
+            int actualContainsInCL = drink.VolumeInCL;
             int actualPrice = drink.Price;
 
             //Assert
             Assert.Equal(expectedName, actualName);
+            Assert.Equal(expectedType, actualType);
             Assert.Equal(expectedFlavor, actualFlavor);
             Assert.Equal(expectedCompany, actualCompany);
             Assert.Equal(expectedContainsInCL, actualContainsInCL);

@@ -33,9 +33,9 @@ namespace VendingMachineConsoleApp.Tests
             VendingMachine vMachine = new VendingMachine();
             vMachine.InsertMoney(1000);
 
-            Toy expectedType1 = new Toy("g", "h", 10);
-            Drink expectedType2 = new Drink("he", "fa", "fasd", 66, 10);
-            Snack expectedType3 = new Snack("dfa", "sda", 12, 234);
+            Toy expectedType1 = new Toy("Winnie the Pooh", "Stuffed Bear", 150, "Cutton", "Yellow", 20);
+            Drink expectedType2 = new Drink("Fanta", "Soda", 20, "Exotic", "Coca-Cola", 33);
+            Snack expectedType3 = new Snack("Marsbar", "Candy bar", 15, 60, 300, true);
 
             //Act
             Product p1 = vMachine.Purchase(1);
@@ -87,7 +87,7 @@ namespace VendingMachineConsoleApp.Tests
             //Assign
             string expectedErrorMessage = "Not enough money.";
             VendingMachine vMachine = new VendingMachine();
-            Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150);
+            Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150, "Cutton", "Yellow", 20);
 
             //Act
             ArithmeticException result = Assert.Throws<ArithmeticException>(() => vMachine.Purchase(1));
@@ -106,13 +106,28 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             VendingMachine vMachine = new VendingMachine();
-            string expectedString = "Products:\n" + "1: Toy\n" + "2: Drink\n" + "3: Snack\n";
 
+            Toy toy = new Toy("Winnie the Pooh", "Stuffed Bear", 150, "Cutton", "Yellow", 20);
+            Drink drink = new Drink("Fanta", "Soda", 20, "Exotic", "Coca-Cola", 33);
+            Snack snack = new Snack("Marsbar", "Candy bar", 15, 60, 300, true);
+
+            string expectedStringIndex1 = "------- Products -------\n\n";
+
+            string expectedStringIndex2 = $"--- 1 ---\n {toy.Examine()}\n";
+
+            string expectedStringIndex3 = $"--- 2 ---\n {drink.Examine()}\n";
+
+            string expectedStringIndex4 = $"--- 3 ---\n {snack.Examine()}\n";
+
+            //\n
             //Act
-            string result = vMachine.ShowAll();
+            string[] result = vMachine.ShowAll();
 
             //Assert
-            Assert.Equal(expectedString, result);
+            Assert.Equal(expectedStringIndex1, result[0]);
+            Assert.Equal(expectedStringIndex2, result[1]);
+            Assert.Equal(expectedStringIndex3, result[2]);
+            Assert.Equal(expectedStringIndex4, result[3]);
         }
 
 

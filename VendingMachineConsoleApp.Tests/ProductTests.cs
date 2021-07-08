@@ -12,8 +12,7 @@ namespace VendingMachineConsoleApp.Tests
         {
             //Assign
             string newName = "Winnie the Pooh";
-            Toy toy = new Toy("Jack in the box", "Box", 555);
-            string expectedExceptionMessage = "";
+            Toy toy = new Toy("Jack in the box", "Box", 555, "Wood", "Black", 40);
 
             //Act
             string result = toy.CheckStringFields(newName);
@@ -25,12 +24,11 @@ namespace VendingMachineConsoleApp.Tests
         public void CheckStringFields_NullString()
         {
             //Assign
-            Toy toy = new Toy("Jack in the box", "Box", 555);
+            Toy toy = new Toy("Jack in the box", "Box", 555, "Wood", "Black", 40);
             string newName = null;
             string expectedExceptionMessage = "Empty or only whitespace is not allowed.";
 
             //Act
-            //1 in SetStringFields is the case for name
             ArgumentException result = Assert.Throws<ArgumentException>(() => toy.CheckStringFields(newName));
 
             //Assert
@@ -40,12 +38,11 @@ namespace VendingMachineConsoleApp.Tests
         public void CheckStringFields_WhiteSpaceString()
         {
             //Assign
-            Toy toy = new Toy("Jack in the box", "Box", 555);
+            Toy toy = new Toy("Jack in the box", "Box", 555, "Wood", "Black", 40);
             string newName = " ";
             string expectedExceptionMessage = "Empty or only whitespace is not allowed.";
 
             //Act
-            //1 in SetStringFields is the case for name
             ArgumentException result = Assert.Throws<ArgumentException>(() => toy.CheckStringFields(newName));
 
             //Assert
@@ -55,12 +52,11 @@ namespace VendingMachineConsoleApp.Tests
         public void CheckStringFields_EmptyString()
         {
             //Assign
-            Toy toy = new Toy("Jack in the box", "Box", 555);
+            Toy toy = new Toy("Jack in the box", "Box", 555, "Wood", "Black", 40);
             string newName = "";
             string expectedExceptionMessage = "Empty or only whitespace is not allowed.";
 
             //Act
-            //1 in SetStringFields is the case for name
             ArgumentException result = Assert.Throws<ArgumentException>(() => toy.CheckStringFields(newName));
 
             //Assert
@@ -75,7 +71,7 @@ namespace VendingMachineConsoleApp.Tests
             //Assign
             int newPrice = 44;
             int oldPrice = 555;
-            Toy toy = new Toy("Jack in the box", "Box", oldPrice);
+            Toy toy = new Toy("Jack in the box", "Box", oldPrice, "Wood", "Black", 40);
 
             //Act
             int result = toy.CheckIntFields(newPrice);
@@ -88,7 +84,7 @@ namespace VendingMachineConsoleApp.Tests
         public void CheckIntFields_LessThanZero() 
         {
             //Assign
-            Toy toy = new Toy("Jack in the box", "Box", 555);
+            Toy toy = new Toy("Jack in the box", "Box", 555, "Wood", "Black", 40);
             int newPrice = 0;
             string expectedExceptionMessage = "0 or less price is not allowed.";
 
@@ -102,7 +98,7 @@ namespace VendingMachineConsoleApp.Tests
         public void CheckIntFields_Zero() 
         {
             //Assign
-            Toy toy = new Toy("Jack in the box", "Box", 555);
+            Toy toy = new Toy("Jack in the box", "Box", 555, "Wood", "Black", 40);
             int newPrice = -123;
             string expectedExceptionMessage = "0 or less price is not allowed.";
 

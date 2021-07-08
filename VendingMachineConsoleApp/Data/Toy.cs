@@ -6,18 +6,31 @@ namespace VendingMachineConsoleApp.Data
 {
     public class Toy : Product
     {
-        private string type;
+        private string material;
+        private string color;
+        private int sizeInCm; //In cm
 
-        public string Type { get { return type; } }
 
-        public Toy(string name, string type, int price) : base(name, price)
+        public string Material { get { return material; } }
+        public string Color { get { return color; } }
+        public int SizeInCm { get { return sizeInCm; } }
+
+
+        public Toy(string name, string type, int price,
+                   string material,
+                   string color,
+                   int sizeInCm) : base(name, type, price)
         {
-            this.type = CheckStringFields(type);
+            this.material = CheckStringFields(material);
+            this.color = CheckStringFields(color);
+            this.sizeInCm = CheckIntFields(sizeInCm);
         }
 
         public override string Examine()
         {
-            return base.ToString() + $"Type of toy: {type}\n";
+            string str = "---- Toy ----\n";
+            str += base.ToString() + $"Material: {type}\nColor: {color}\nSize: {sizeInCm}cm\n";
+            return str;
         }
 
         public override string Use()

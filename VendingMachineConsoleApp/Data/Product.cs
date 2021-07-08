@@ -7,17 +7,20 @@ namespace VendingMachineConsoleApp.Data
     public abstract class Product
     {
         protected string name;
+        protected string type;
         protected int price;
 
         public string Name { get { return name; } }
+        public string Type { get { return type; } }
         public int Price { get { return price; } }
 
         public abstract string Examine();
         public abstract string Use();
 
-        public Product(string name, int price)
+        public Product(string name, string type, int price)
         {
             this.name = CheckStringFields(name);
+            this.type = CheckStringFields(type);
             this.price = CheckIntFields(price);
         }
 
@@ -49,7 +52,7 @@ namespace VendingMachineConsoleApp.Data
 
         public override string ToString()
         {
-            return $"Name: {name}\nPrice: {price}\n";
+            return $"Name: {name}\nType: {type}\nPrice: {price}kr\n";
         }
 
     }

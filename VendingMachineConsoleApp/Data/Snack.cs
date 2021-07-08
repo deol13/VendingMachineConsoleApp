@@ -6,22 +6,35 @@ namespace VendingMachineConsoleApp.Data
 {
     public class Snack : Product
     {
-        private readonly string type;
+        private readonly int calories;
         private readonly int weight;
+        private readonly bool peanutsOrNot;
 
-        public string Type { get { return type; } }
+        public int Calories { get { return calories; } }
+        public bool PeanutsOrNot { get { return peanutsOrNot; } }
         public int Weight { get { return weight; } }
 
-        public Snack(string name, string type, int weight, int price) : base (name, price)
-        {
-            this.type = CheckStringFields(type);
+        public Snack(string name, string type, int price, 
+                    int weight, 
+                    int calories,
+                    bool peanutsOrNot) : base (name, type, price)
+        { 
             this.weight = CheckIntFields(weight);
+            this.calories = CheckIntFields(calories);
+            this.peanutsOrNot = peanutsOrNot;
         }
 
         public override string Examine()
         {
-            return base.ToString() + $"Type of snack: {type}\nWeighs: {weight}grams\n";
-            //return $"{type} named {name}, weights {weight} and is priced at {price}.";
+            string str = "---- Snack ----\n";
+            str += base.ToString() + $"Weighs: {weight}grams\nCalories: {calories}\n";
+
+            if (peanutsOrNot)
+                str += " Do contain peanuts.\n";
+            else
+                str += " Do not contain peanuts.\n";
+
+            return str;
         }
 
         public override string Use()
