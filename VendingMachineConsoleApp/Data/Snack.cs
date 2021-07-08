@@ -30,9 +30,9 @@ namespace VendingMachineConsoleApp.Data
             str += base.ToString() + $"Weighs: {weight}grams\nCalories: {calories}\n";
 
             if (peanutsOrNot)
-                str += " Do contain peanuts.\n";
+                str += "Do contain peanuts.\n";
             else
-                str += " Do not contain peanuts.\n";
+                str += "Do not contain peanuts.\n";
 
             return str;
         }

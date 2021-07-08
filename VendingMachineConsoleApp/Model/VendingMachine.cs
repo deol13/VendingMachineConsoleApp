@@ -70,14 +70,14 @@ namespace VendingMachineConsoleApp.Model
         public string[] ShowAll()
         {
             string[] show = new string[4];
-            show[0] = "------- Products -------\n\n";
+            show[0] = "------- Products -------";
             int vendingNumber = 1;
 
             foreach (Product product in products)
             {
                 //GetType gets me the entire namespace and we only want the class name
                 //so .Name on GetType() will get us only the class name.
-                show[vendingNumber] += $"--- {vendingNumber} ---\n {product.Examine()}\n"; 
+                show[vendingNumber] += $"Vending Number: {vendingNumber}\n{product.Examine()}"; 
                 
                 vendingNumber++;
             }

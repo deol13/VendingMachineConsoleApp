@@ -111,13 +111,13 @@ namespace VendingMachineConsoleApp.Tests
             Drink drink = new Drink("Fanta", "Soda", 20, "Exotic", "Coca-Cola", 33);
             Snack snack = new Snack("Marsbar", "Candy bar", 15, 60, 300, true);
 
-            string expectedStringIndex1 = "------- Products -------\n\n";
+            string expectedStringIndex1 = "------- Products -------";
 
-            string expectedStringIndex2 = $"--- 1 ---\n {toy.Examine()}\n";
+            string expectedStringIndex2 = $"Vending Number: 1\n{toy.Examine()}";
 
-            string expectedStringIndex3 = $"--- 2 ---\n {drink.Examine()}\n";
+            string expectedStringIndex3 = $"Vending Number: 2\n{drink.Examine()}";
 
-            string expectedStringIndex4 = $"--- 3 ---\n {snack.Examine()}\n";
+            string expectedStringIndex4 = $"Vending Number: 3\n{snack.Examine()}";
 
             //\n
             //Act

@@ -139,7 +139,7 @@ namespace VendingMachineConsoleApp.Tests
             string expectedString = "---- Snack ----\n";
             expectedString += $"Name: {name}\nType: {type}\nPrice: {price}kr\n";
             expectedString += $"Weighs: {weight}grams\nCalories: {calories}\n";
-            expectedString += " Do contain peanuts.\n";
+            expectedString += "Do contain peanuts.\n";
 
             //Act
             string result = snack.Examine();
@@ -163,7 +163,7 @@ namespace VendingMachineConsoleApp.Tests
             string expectedString = "---- Snack ----\n";
             expectedString += $"Name: {name}\nType: {type}\nPrice: {price}kr\n";
             expectedString += $"Weighs: {weight}grams\nCalories: {calories}\n";
-            expectedString += " Do not contain peanuts.\n";
+            expectedString += "Do not contain peanuts.\n";
 
             //Act
             string result = snack.Examine();
