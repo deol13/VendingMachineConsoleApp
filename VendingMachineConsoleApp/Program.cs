@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using VendingMachineConsoleApp.Data;
 using VendingMachineConsoleApp.Model;
@@ -10,6 +11,8 @@ namespace VendingMachineConsoleApp
         static void Main(string[] args)
         {
             VendingMachine vMachine = new VendingMachine();
+            List<Product> listOfBoughtProducts = new List<Product>();
+
             const string menu = "Welcome to THE vending machine.\nTo purchase a product please input a number between 1 and 3, input 4 to insert money and 99 to exit:\n";
             int userChoice = 0;
             bool continueTheGame = true;
@@ -21,7 +24,7 @@ namespace VendingMachineConsoleApp
                 ShowAllProducts(vMachine);
                 MyPrint.Print("Money pool: " + vMachine.Money.ToString());
 
-                string userInput = MyPrint.PrintAndAsk("Input a valid vending number: ");
+                string userInput = MyPrint.PrintAndAsk("Input a valid vending number(Product 1-3, insert money 4 or exit 99): ");
                 int.TryParse(userInput, out userChoice);
 
                 if (userChoice == 99 || userChoice > 0 && userChoice < 5)
@@ -29,23 +32,38 @@ namespace VendingMachineConsoleApp
                     switch(userChoice)
                     {
                         case 1:
-                            //Product 1
-                            MyPrint.PrintAndAsk("Product 1");
-                            break;
-                        case 2:
-                            //Product 2
-                            MyPrint.PrintAndAsk("Product 2");
-                            break;
+                        case 2: 
                         case 3:
-                            //Product 3
-                            MyPrint.PrintAndAsk("Product 3");
+                            Product bought = vMachine.Purchase(userChoice);
+                            if (bought != null)
+                                listOfBoughtProducts.Add(bought);
+                            else
+                                MyPrint.PrintError($"Not enough money left in the vending machine.");
                             break;
                         case 4:
-                            //Insert money
-                            MyPrint.PrintAndAsk("Insert money");
+                            userInput = MyPrint.PrintAndAsk("Insert money, only the denominations 1,5,10,20,50,100,500,1000 works: ");
+                            int.TryParse(userInput, out int moneyInserted);
+
+                            if (!vMachine.InsertMoney(moneyInserted))
+                                MyPrint.PrintError($"{userInput} is an invalid denominations. Only 1, 5, 10, 20, 50, 100, 500, 1000 works.");
+
                             break;
                         case 99:
-                            //Get change back and exit
+                            Dictionary<int, int> changeBack = vMachine.EndTransaction();
+
+                            MyPrint.Print($"---Change back---");
+                            foreach (KeyValuePair<int, int> coin in changeBack)
+                            {
+                                MyPrint.Print($"{coin.Value}: {coin.Key}kr bill(s)");
+                            }
+                            MyPrint.PrintEmptyLines(1);
+
+                            MyPrint.Print($"---Items bought---");
+                            foreach (Product item in listOfBoughtProducts)
+                            {
+                                MyPrint.Print(item.Name);
+                            }
+
                             MyPrint.PrintEmptyLines(1);
                             MyPrint.Print("Exit");
                             continueTheGame = false;
@@ -56,8 +74,7 @@ namespace VendingMachineConsoleApp
                 }
                 else
                 {
-                    MyPrint.ResetConsole();
-                    MyPrint.PrintError($"{userChoice} is an Invalid vending choice. Only 1 to 4 or 99 are valid");
+                    MyPrint.PrintError($"{userInput} is an Invalid vending choice. Only 1 to 4 or 99 are valid");
                 }
             }
             MyPrint.PrintAndAsk("Press a key to end.");

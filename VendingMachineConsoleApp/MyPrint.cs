@@ -24,7 +24,8 @@ namespace VendingMachineConsoleApp
 
         public static void PrintError(string errorMessage)
         {
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(errorMessage);
             Console.ResetColor();
             Console.ReadKey();
