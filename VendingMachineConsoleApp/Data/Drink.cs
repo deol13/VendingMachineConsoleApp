@@ -6,10 +6,10 @@ namespace VendingMachineConsoleApp.Data
 {
     public class Drink : Product
     {
-        //They are private and readonly because they are only suppose to be set in the constructor and not after that.
-        private readonly string flavor;
-        private readonly string company;
-        private readonly int volumeInCL;
+        //Could had been made public readonly
+        private string flavor;
+        private string company;
+        private int volumeInCL;
 
         public string Flavor { get { return flavor; } }
         public string Company { get { return company; } }

@@ -6,11 +6,10 @@ namespace VendingMachineConsoleApp.Data
 {
     public class Toy : Product
     {
-        //They are private and readonly because they are only suppose to be set in the constructor and not after that.
+        //Could had been made public readonly
         private string material;
         private string color;
-        private int sizeInCm; //In cm
-
+        private int sizeInCm;
 
         public string Material { get { return material; } }
         public string Color { get { return color; } }
