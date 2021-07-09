@@ -6,6 +6,7 @@ namespace VendingMachineConsoleApp.Data
 {
     public abstract class Product
     {
+        //They are protected so they can be inherited but not modified by anthing outside the hierarchy.
         protected string name;
         protected string type;
         protected int price;
@@ -26,7 +27,8 @@ namespace VendingMachineConsoleApp.Data
 
         /// <summary>
         /// Checks if the string is null, empty or only contains white spaces.
-        /// Throws expection in that case
+        /// Throws expection in that case.
+        /// They are implemented in the base class because all the derived classes needs to check the data before modifing their fields.
         /// </summary>
         /// <param name="str">String that we want to check</param>
         /// <returns></returns>
@@ -39,7 +41,8 @@ namespace VendingMachineConsoleApp.Data
         }
 
         /// <summary>
-        /// Checks if the int is 0 or less. Throws expection in that case
+        /// Checks if the int is 0 or less. Throws expection in that case.
+        /// They are implemented in the base class because all the derived classes needs to check the data before modifing their fields.
         /// </summary>
         /// <param name="newData">The int we want to check</param>
         /// <returns></returns>

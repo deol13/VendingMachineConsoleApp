@@ -10,7 +10,6 @@ namespace VendingMachineConsoleApp.Model
         Product[] products;
         readonly int[] coins;
         int money;
-        //Volume of each product inside the vending machine? aka 10 in the beginning than 1 less for each purchase
 
         public int Money { get { return money; } }
 
